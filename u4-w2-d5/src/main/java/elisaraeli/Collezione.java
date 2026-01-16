@@ -60,7 +60,6 @@ public class Collezione {
     }
 
     // 5. RIMOZIONE PER ID
-    users.removeIf(user -> user.getAge() >= 18);
     public void rimuoviGiocoById(int id) {
 
         // Se la condizione è soddisfatta (quindi l'id del gioco corrisponde), removeIf rimuove l'elemento
@@ -73,7 +72,22 @@ public class Collezione {
     }
 
     // 6. AGGIORNAMENTO DI UN ELEMENTO PER ID
+    public void aggiornaGiocoById(int id, Giochi newGioco) {
+        // faccio lo stream su listaGiochi, filtro per id, prendo il primo elemento
+        // se non c'è lancio un Exception
+        // prendo l'index del gioco con l'id scelto
+        // e uso set per aggiornarlo
+        Giochi giocoEsistente = listaGiochi.stream()
+                .filter(g -> g.getId() == id)
+                .findFirst()
+                .orElseThrow(() ->
+                        new NoSuchElementException("Non è stato trovato nessun gioco con l'id: " + id));
 
+        int index = listaGiochi.indexOf(giocoEsistente);
+
+        listaGiochi.set(index, newGioco);
+    }
+    
     // 7. STATISTICHE DELLA COLLEZIONE (numero tot di videogiochi e giochi da tavolo presenti,
     // il gioco con il prezzo più alto e la media dei prezzi di tutti gli elementi)
 

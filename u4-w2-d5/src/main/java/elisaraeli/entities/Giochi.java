@@ -4,7 +4,7 @@ package elisaraeli.entities;
 public abstract class Giochi {
     // L'ID deve essere univoco
     private static int incremento = 1;
-    private final int id;
+    private int id;
     private String titolo;
     private int annoPubblicazione;
     private double prezzo;
@@ -56,5 +56,4 @@ public abstract class Giochi {
         return "ID: " + id + ", titolo: " + titolo + ", anno di pubblicazione: " + annoPubblicazione
                 + ", prezzo: " + prezzo;
     }
-
 }
