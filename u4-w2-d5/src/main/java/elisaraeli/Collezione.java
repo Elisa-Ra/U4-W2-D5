@@ -1,16 +1,18 @@
 package elisaraeli;
 
 import elisaraeli.entities.Giochi;
+import elisaraeli.entities.GiocoDaTavolo;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public class Collezione {
 
     private final List<Giochi> listaGiochi = new ArrayList<>();
 
 
-    // AGGIUNTA DI UN ELEMENTO (non deve essere possibile inserire un elemento con lo stesso id)
+    //1. AGGIUNTA DI UN ELEMENTO (non deve essere possibile inserire un elemento con lo stesso id)
 
     public void add(Giochi gioco) {
         // Controllo che il gioco non sia null
@@ -31,10 +33,31 @@ public class Collezione {
     }
 
     // 2. RICERCA PER ID
+    // Faccio una stream sulla lista giochi, uso l'id come filtro, prendo il primo elemento
+    // se non esiste, lancio un errore
+    public Giochi cercaId(int id) {
+        return listaGiochi.stream().filter(g -> g.getId() == id).findFirst()
+                .orElseThrow(() -> // consigliato da intelliJ
+                        new NoSuchElementException("Non è stato trovato nessun gioco con l'id: " + id));
+    }
 
-    // 3. RICERCA PER PREZZO
+    // 3. RICERCA PER PREZZO (deve ritornare quindi una lista di giochi
+    // con prezzo inferiore al prezzo inserito)
+    // faccio uno stream su listaGiochi, uso come filtro il fatto che il prezzo debba essere minore del
+    // prezzo scelto. E poi uso toList per restituire una lista
+    public List<Giochi> cercaPrezzo(double prezzoScelto) {
+        return listaGiochi.stream().filter(g -> g.getPrice() < prezzoScelto).toList();
+    }
 
     // 4. RICERCA PER NUMERO DI GIOCATORI (GiocoDaTavolo)
+    // faccio lo stream sulla lista giochi, ma il numero di giocatori lo possiede solo il GiocoDaTavolo
+    // quindi filtro gli elementi GiocoDaTavolo e controllo che il numero di giocatori corrisponda
+    // e poi restituisco una lista di GiocoDaTavolo
+    public List<GiocoDaTavolo> cercaNgiocatori(int ngiocatori) {
+        return listaGiochi.stream().filter(g -> g instanceof GiocoDaTavolo giocoTavolo
+                        && giocoTavolo.getNumeroGiocatori() == ngiocatori)
+                .map(g -> (GiocoDaTavolo) g).toList();
+    }
 
     // 5. RIMOZIONE PER ID
 
