@@ -5,6 +5,7 @@ public class Videogioco extends Giochi {
     // la durata gioco deve essere in ore, potrei usare int o double
     private int durataGioco;
     private Genere genere;
+
     public Videogioco(String titolo, int annoPubblicazione, double prezzo,
                       String piattaforma, int durataGioco, Genere genere) {
         // Uso i costruttori del padre (Giochi)
@@ -24,6 +25,13 @@ public class Videogioco extends Giochi {
         this.genere = genere;
     }
 
+    @Override
+    public String toString() {
+        return super.toString() +
+                ", piattaforma: " + piattaforma + ", durata gioco: "
+                + durataGioco + " ore, genere: " + genere;
+    }
+
     // L'ENUM GENERE
     public enum Genere {
         MOBA,
@@ -32,6 +40,4 @@ public class Videogioco extends Giochi {
         GDR,
         AVVENTURAGRAFICA,
     }
-
-
 }

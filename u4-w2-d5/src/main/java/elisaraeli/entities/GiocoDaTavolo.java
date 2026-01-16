@@ -22,5 +22,13 @@ public class GiocoDaTavolo extends Giochi {
         this.numeroGiocatori = numeroGiocatori;
         this.durataMedia = durataMedia;
 
+
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() +
+                ", numero di giocatori: " + numeroGiocatori + ", durata media partita: "
+                + durataMedia + " minuti";
     }
 }
