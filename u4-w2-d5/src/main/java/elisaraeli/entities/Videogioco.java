@@ -34,7 +34,6 @@ public class Videogioco extends Giochi {
 
     // L'ENUM GENERE
     public enum Genere {
-        MOBA,
         HORROR,
         TPS,
         GDR,

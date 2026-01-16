@@ -31,4 +31,12 @@ public class GiocoDaTavolo extends Giochi {
                 ", numero di giocatori: " + numeroGiocatori + ", durata media partita: "
                 + durataMedia + " minuti";
     }
+
+    public int getNumeroGiocatori() {
+        return numeroGiocatori;
+    }
+
+    public int getDurataMedia() {
+        return durataMedia;
+    }
 }

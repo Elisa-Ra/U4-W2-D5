@@ -56,4 +56,5 @@ public abstract class Giochi {
         return "ID: " + id + ", titolo: " + titolo + ", anno di pubblicazione: " + annoPubblicazione
                 + ", prezzo: " + prezzo;
     }
+
 }
