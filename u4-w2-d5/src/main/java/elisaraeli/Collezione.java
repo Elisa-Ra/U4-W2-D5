@@ -2,8 +2,10 @@ package elisaraeli;
 
 import elisaraeli.entities.Giochi;
 import elisaraeli.entities.GiocoDaTavolo;
+import elisaraeli.entities.Videogioco;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -87,9 +89,41 @@ public class Collezione {
 
         listaGiochi.set(index, newGioco);
     }
-    
+
     // 7. STATISTICHE DELLA COLLEZIONE (numero tot di videogiochi e giochi da tavolo presenti,
     // il gioco con il prezzo più alto e la media dei prezzi di tutti gli elementi)
+    public void statistiche() {
+        // numero totale di videogiochi
+        int numVideogiochi = (int) listaGiochi.stream()
+                .filter(g -> g instanceof Videogioco)
+                .count();
 
+        // numero totale di giochi da tavolo
+        int numGiochiTavolo = (int) listaGiochi.stream()
+                .filter(g -> g instanceof GiocoDaTavolo)
+                .count();
+
+        // il gioco con il prezzo più alto
+        Giochi biggerPrezzo = listaGiochi.stream()
+                .max(Comparator.comparingDouble(Giochi::getPrice))
+                .orElse(null);
+
+        // media dei prezzi di tutti gli elementi
+        double mediaPrezzi = listaGiochi.stream()
+                .mapToDouble(Giochi::getPrice)
+                .average()
+                .orElse(0.0);
+
+        System.out.println("Statistiche della collezione: ");
+        System.out.println("Numero di Videogiochi: " + numVideogiochi);
+        System.out.println("Numero di Giochi da Tavolo: " + numGiochiTavolo);
+
+        if (biggerPrezzo != null) {
+            System.out.println("Il gioco con il prezzo più alto è : " + biggerPrezzo);
+        } else {
+            System.out.println("Non è presente nessun gioco nella lista.");
+        }
+        System.out.println("Media dei prezzi: " + mediaPrezzi);
+    }
 }
 
