@@ -60,12 +60,22 @@ public class Collezione {
     }
 
     // 5. RIMOZIONE PER ID
+    users.removeIf(user -> user.getAge() >= 18);
+    public void rimuoviGiocoById(int id) {
+
+        // Se la condizione è soddisfatta (quindi l'id del gioco corrisponde), removeIf rimuove l'elemento
+        boolean elimina = listaGiochi.removeIf(g -> g.getId() == id);
+        // se la condizione non viene soddisfatta (quindi non esiste un gioco con quell'id)
+        // lancio un Exception
+        if (!elimina) {
+            throw new NoSuchElementException("Non è stato trovato nessun gioco con l'id: " + id);
+        }
+    }
 
     // 6. AGGIORNAMENTO DI UN ELEMENTO PER ID
 
     // 7. STATISTICHE DELLA COLLEZIONE (numero tot di videogiochi e giochi da tavolo presenti,
     // il gioco con il prezzo più alto e la media dei prezzi di tutti gli elementi)
-
 
 }
 
