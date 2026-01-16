@@ -5,15 +5,15 @@ public abstract class Giochi {
     // L'ID deve essere univoco
     private static int incremento = 1;
     private final int id;
-    private String title;
+    private String titolo;
     private int annoPubblicazione;
     private double prezzo;
 
-    public Giochi(String title, int annoPubblicazione, double prezzo) {
+    public Giochi(String titolo, int annoPubblicazione, double prezzo) {
         // GESTIONE DELLE ECCEZIONI
         // controllo che il titolo non sia null o vuoto/formato solo da spazi
         // uso il throw invece di un sout perché nel sout apparirebbe solo il msg senza "bloccarmi"
-        if (title == null || title.isBlank()) {
+        if (titolo == null || titolo.isBlank()) {
             throw new IllegalArgumentException("Errore: titolo non valido.");
         }
 
@@ -30,7 +30,7 @@ public abstract class Giochi {
 
         // per avere un id univoco, ho deciso di mettere l'id che incrementa di volta in volta.
         this.id = incremento++;
-        this.title = title;
+        this.titolo = titolo;
         this.annoPubblicazione = annoPubblicazione;
         this.prezzo = prezzo;
     }
@@ -40,7 +40,7 @@ public abstract class Giochi {
     }
 
     public String getTitle() {
-        return title;
+        return titolo;
     }
 
     public int getAnnoPubblicazione() {
@@ -53,7 +53,7 @@ public abstract class Giochi {
 
     @Override
     public String toString() {
-        return "ID: " + id + ", titolo: " + title + ", anno di pubblicazione: " + annoPubblicazione
+        return "ID: " + id + ", titolo: " + titolo + ", anno di pubblicazione: " + annoPubblicazione
                 + ", prezzo: " + prezzo;
     }
 }
