@@ -13,6 +13,10 @@ public class Collezione {
 
     private final List<Giochi> listaGiochi = new ArrayList<>();
 
+    public void aggiungiGioco(Giochi gioco) {
+        listaGiochi.add(gioco);
+    }
+
 
     //1. AGGIUNTA DI UN ELEMENTO (non deve essere possibile inserire un elemento con lo stesso id)
 

@@ -19,7 +19,7 @@ public abstract class Giochi {
 
         // controllo che l'anno di pubblicazione sia maggiore di 1950 e minore dell'anno corrente
         int annoCorrente = java.time.LocalDate.now().getYear();
-        if (annoPubblicazione < 1950 || annoPubblicazione > annoCorrente) {
+        if (annoPubblicazione < 1940 || annoPubblicazione > annoCorrente) {
             throw new IllegalArgumentException("Errore: l'anno di pubblicazione non è valido.");
         }
 
@@ -47,8 +47,20 @@ public abstract class Giochi {
         return annoPubblicazione;
     }
 
+    public void setAnnoPubblicazione(int anno) {
+        this.annoPubblicazione = anno;
+    }
+
     public double getPrice() {
         return prezzo;
+    }
+
+    public void setPrice(double prezzo) {
+        this.prezzo = prezzo;
+    }
+
+    public void setNome(String titolo) {
+        this.titolo = titolo;
     }
 
     @Override
